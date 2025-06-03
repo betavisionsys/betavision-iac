@@ -1,0 +1,8 @@
+hetzner_token        = "<COLE_AQUI_SEU_TOKEN>"
+network_name         = "rede-clienteA"
+network_cidr         = "10.1.0.0/16"
+location             = "fsn1"
+server_type          = "cx31"
+server_image         = "ubuntu-22.04"
+server_count         = 2
+ssh_key_fingerprint  = "<FINGERPRINT_DA_CHAVE_SSH>"

@@ -1,0 +1,32 @@
+name: Build & Push Docker Apps
+
+on:
+  push:
+    paths:
+      - 'apps/**'
+  workflow_dispatch:
+
+jobs:
+  build-push:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        app: [nomeApp1]
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Login to Registry
+        run: echo \${{ secrets.DOCKER_PASSWORD }} | docker login registry.exemplo.com -u \${{ secrets.DOCKER_USER }} --password-stdin
+
+      - name: Build & Push
+        run: |
+          cd apps/\${{ matrix.app }}
+          IMAGE_TAG=registry.exemplo.com/\${{ matrix.app }}:\${{ github.sha }}
+          docker build -t \$IMAGE_TAG .
+          docker push \$IMAGE_TAG
+      - name: Set Output Tag
+        id: tag
+        run: echo "::set-output name=tag::\${{ github.sha }}"

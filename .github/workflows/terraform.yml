@@ -23,11 +23,11 @@ jobs:
           terraform_version: 1.5.0
 
       - name: Terraform Init
+        env:
+          HCLOUD_TOKEN: ${{ secrets[format('HCLOUD_TOKEN_{0}', matrix.client)] }}
         run: |
           cd iac/clients/${{ matrix.client }}
           terraform init -backend-config="key=\${{ matrix.client }}/terraform.tfstate"
-        env:
-          HCLOUD_TOKEN: ${{ secrets[format('HCLOUD_TOKEN_{0}', matrix.client)] }}
 
       - name: Terraform Fmt
         run: cd iac && terraform fmt -check
@@ -36,11 +36,11 @@ jobs:
         run: cd iac/clients/${{ matrix.client }} && terraform validate
 
       - name: Terraform Plan
+        env:
+          HCLOUD_TOKEN: ${{ secrets[format('HCLOUD_TOKEN_{0}', matrix.client)] }}
         run: |
           cd iac/clients/${{ matrix.client }}
           terraform plan -var-file=terraform.tfvars -out=tfplan
-        env:
-          HCLOUD_TOKEN: ${{ secrets[format('HCLOUD_TOKEN_{0}', matrix.client)] }}
 
   apply:
     needs: plan
@@ -64,8 +64,8 @@ jobs:
           terraform_version: 1.5.0
 
       - name: Terraform Apply
+        env:
+          HCLOUD_TOKEN: ${{ secrets[format('HCLOUD_TOKEN_{0}', matrix.client)] }}
         run: |
           cd iac/clients/\${{ matrix.client }}
           terraform apply -auto-approve "tfplan"
-        env:
-          HCLOUD_TOKEN: ${{ secrets[format('HCLOUD_TOKEN_{0}', matrix.client)] }}

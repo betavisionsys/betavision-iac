@@ -55,7 +55,7 @@ jobs:
       - name: Download Plan
         uses: actions/download-artifact@v3
         with:
-          name: "\${{ matrix.client }}-tfplan"
+          name: ${{ matrix.client }}-tfplan
           path: ./plans
 
       - name: Set up Terraform

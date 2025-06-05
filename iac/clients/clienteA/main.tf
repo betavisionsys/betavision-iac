@@ -5,6 +5,7 @@ terraform {
       version = "~> 1.40"
     }
   }
+  backend "local" {}
 }
 
 provider "hcloud" {}

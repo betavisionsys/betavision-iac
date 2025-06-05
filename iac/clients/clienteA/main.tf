@@ -8,10 +8,10 @@ module "network" {
 }
 
 module "compute" {
-  source = "../../modules/compute/hetzner"
-  network_id          = module.network.network_id
-  image               = var.server_image
-  server_type         = var.server_type
-  instance_count      = var.server_count
-  ssh_key_fingerprint = var.ssh_key_fingerprint
+  source               = "../../modules/compute/hetzner"
+  network_id           = module.network.network_id
+  image                = var.server_image
+  server_type          = var.server_type
+  server_count         = var.server_count
+  ssh_key_fingerprint  = var.ssh_key_fingerprint
 }

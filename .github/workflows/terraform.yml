@@ -67,6 +67,15 @@ jobs:
         with:
           terraform_version: 1.5.0
 
+      - name: Terraform Init
+        env:
+          HCLOUD_TOKEN: ${{ secrets.HCLOUD_TOKEN_CLIENTEA }}
+          TF_VAR_hetzner_token: ${{ secrets.HCLOUD_TOKEN_CLIENTEA }}
+          TF_VAR_ssh_key_fingerprint: ${{ secrets.SSH_KEY_FINGERPRINT_CLIENTEA }}
+        run: |
+          cd iac/clients/clienteA
+          terraform init
+
       - name: Terraform Apply
         env:
           HCLOUD_TOKEN: ${{ secrets.HCLOUD_TOKEN_CLIENTEA }}

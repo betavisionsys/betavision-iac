@@ -4,7 +4,8 @@ variable "hetzner_token" {
 }
 
 variable "network_name" {
-  type = string
+  type    = string
+  default = "clienteA-network"
 }
 
 variable "network_cidr" {
@@ -19,7 +20,7 @@ variable "location" {
 
 variable "server_type" {
   type    = string
-  default = "cx31"
+  default = "cx22"
 }
 
 variable "server_image" {

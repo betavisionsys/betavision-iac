@@ -24,7 +24,7 @@ jobs:
 
       - name: Terraform Init
         env:
-          HCLOUD_TOKEN: ${{ secrets[format('HCLOUD_TOKEN_{0}', matrix.client)] }}
+          HCLOUD_TOKEN: ${{ env.HCLOUD_TOKEN }}
         run: |
           cd iac/clients/${{ matrix.client }}
           terraform init -backend-config="key=\${{ matrix.client }}/terraform.tfstate"
@@ -37,7 +37,7 @@ jobs:
 
       - name: Terraform Plan
         env:
-          HCLOUD_TOKEN: ${{ secrets[format('HCLOUD_TOKEN_{0}', matrix.client)] }}
+          HCLOUD_TOKEN: ${{ secrets['HCLOUD_TOKEN_${{ matrix.client.toUpperCase() }}'] }}
         run: |
           cd iac/clients/${{ matrix.client }}
           terraform plan -var-file=terraform.tfvars -out=tfplan
@@ -65,7 +65,7 @@ jobs:
 
       - name: Terraform Apply
         env:
-          HCLOUD_TOKEN: ${{ secrets[format('HCLOUD_TOKEN_{0}', matrix.client)] }}
+          HCLOUD_TOKEN: ${{ secrets['HCLOUD_TOKEN_${{ matrix.client.toUpperCase() }}'] }}
         run: |
           cd iac/clients/\${{ matrix.client }}
           terraform apply -auto-approve "tfplan"

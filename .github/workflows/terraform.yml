@@ -10,7 +10,7 @@ on:
 
 jobs:
   plan:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     strategy:
       matrix:
         client: [clienteA]
@@ -47,7 +47,7 @@ jobs:
   apply:
     needs: plan
     if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     strategy:
       matrix:
         client: [clienteA]

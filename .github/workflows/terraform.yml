@@ -53,6 +53,9 @@ jobs:
     needs: plan-clienteA
     if: github.ref == 'refs/heads/main'
     runs-on: self-hosted
+    # O ambiente 'production' deve ser criado e protegido em Settings > Environments do GitHub para exigir aprovação manual
+    environment:
+      name: production
     steps:
       - uses: actions/checkout@v3
 

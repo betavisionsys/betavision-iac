@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     hcloud = {
-      source = "hashicorp/hcloud"
+      source = "hetznercloud/hcloud"
     }
   }
 }

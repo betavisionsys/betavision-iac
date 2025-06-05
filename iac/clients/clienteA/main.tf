@@ -1,4 +1,12 @@
-provider "hetzner" {
+terraform {
+  required_providers {
+    hcloud = {
+      source = "hetznercloud/hcloud"
+    }
+  }
+}
+
+provider "hcloud" {
   token = var.hetzner_token
 }
 

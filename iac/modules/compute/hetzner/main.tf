@@ -13,7 +13,7 @@ resource "hcloud_server" "main" {
   image             = var.image
   server_type       = var.server_type
   location          = "fsn1"
-  networks          = [var.network_id]
+  # networks          = [var.network_id]
   ssh_keys          = [var.ssh_key_fingerprint]
 }
 

@@ -27,7 +27,7 @@ jobs:
           HCLOUD_TOKEN: ${{ env.HCLOUD_TOKEN }}
         run: |
           cd iac/clients/${{ matrix.client }}
-          terraform init -backend-config="key=\${{ matrix.client }}/terraform.tfstate"
+          terraform init
 
       - name: Terraform Fmt
         run: cd iac && terraform fmt -check

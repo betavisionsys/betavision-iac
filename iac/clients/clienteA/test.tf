@@ -1,12 +1,9 @@
-provider "hcloud" {
-  token = "test_token"
-}
 
 resource "hcloud_server" "example" {
   name     = "example-server"
-  image    = "ubuntu-20.04"
-  server_type = "cx11"
-  ssh_keys = ["your_ssh_key"]
+  image    = var.server_image
+  server_type = var.server_type
+  ssh_keys = [var.ssh_key_fingerprint]
 }
 
 output "server_ip" {

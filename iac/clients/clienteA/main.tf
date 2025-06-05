@@ -22,6 +22,6 @@ module "compute" {
   network_id          = module.network.network_id
   image               = var.server_image
   server_type         = var.server_type
-  count               = var.server_count
+  instance_count     = var.server_count
   ssh_key_fingerprint = var.ssh_key_fingerprint
 }

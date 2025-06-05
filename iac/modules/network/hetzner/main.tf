@@ -8,7 +8,8 @@ terraform {
 
 
 resource "hcloud_network" "main" {
-  name = var.name
+  name     = var.name
+  ip_range = var.cidr
 }
 
 resource "hcloud_subnet" "main" {

@@ -7,7 +7,9 @@ terraform {
   }
 }
 
-provider "hcloud" {}
+provider "hcloud" {
+  token = var.hetzner_token
+}
 
 module "network" {
   source = "../../modules/network/hetzner"

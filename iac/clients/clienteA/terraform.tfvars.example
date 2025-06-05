@@ -1,3 +1,4 @@
+# Substitua pelo seu token real da Hetzner Cloud. Nunca suba o token real para o repositório!
 hetzner_token        = "<COLE_AQUI_SEU_TOKEN>"
 network_name         = "rede-clienteA"
 network_cidr         = "10.1.0.0/16"

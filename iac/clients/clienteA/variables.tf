@@ -31,3 +31,8 @@ variable "server_count" {
 variable "ssh_key_fingerprint" {
   type = string
 }
+
+variable "hetzner_token" {
+  type      = string
+  sensitive = true
+}

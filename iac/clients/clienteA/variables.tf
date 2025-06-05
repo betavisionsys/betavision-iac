@@ -25,7 +25,7 @@ variable "server_image" {
 
 variable "server_count" {
   type    = number
-  default = 2
+  default = 1
 }
 
 variable "ssh_key_fingerprint" {

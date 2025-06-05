@@ -74,4 +74,4 @@ jobs:
           TF_VAR_ssh_key_fingerprint: ${{ secrets.SSH_KEY_FINGERPRINT_CLIENTEA }}
         run: |
           cd iac/clients/clienteA
-          terraform apply -auto-approve "../plans/tfplan"
+          terraform apply -auto-approve "tfplan"

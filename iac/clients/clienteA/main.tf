@@ -22,5 +22,7 @@ resource "hcloud_server" "clienteA_server" {
   server_type     = var.server_type
   location        = var.location
   ssh_keys        = [var.ssh_key_fingerprint]
-  network_ids     = [hcloud_network.clienteA_network.id]
+  network {
+    network_id = hcloud_network.clienteA_network.id
+  }
 }

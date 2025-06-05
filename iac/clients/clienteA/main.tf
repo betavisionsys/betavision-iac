@@ -1,11 +1,13 @@
 terraform {
   required_providers {
     hcloud = {
-      source = "hetznercloud/hcloud"
+      source  = "hetznercloud/hcloud"
+      version = "~> 1.40"
     }
   }
 }
 
+provider "hcloud" {}
 
 resource "hcloud_network" "clienteA_network" {
   name     = var.network_name

@@ -1,8 +1,3 @@
-variable "hetzner_token" {
-  type      = string
-  sensitive = true
-}
-
 variable "network_name" {
   type    = string
   default = "clienteA-network"

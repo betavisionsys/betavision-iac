@@ -25,7 +25,6 @@ jobs:
       - name: Terraform Init
         env:
           HCLOUD_TOKEN: ${{ secrets['HCLOUD_TOKEN_${{ matrix.client.toUpperCase() }}'] }}
-          TF_VAR_hetzner_token: ${{ secrets['HCLOUD_TOKEN_${{ matrix.client.toUpperCase() }}'] }}
           TF_VAR_ssh_key_fingerprint: ${{ secrets['SSH_KEY_FINGERPRINT_${{ matrix.client.toUpperCase() }}'] }}
         run: |
           cd iac/clients/${{ matrix.client }}
@@ -40,7 +39,6 @@ jobs:
       - name: Terraform Plan
         env:
           HCLOUD_TOKEN: ${{ secrets['HCLOUD_TOKEN_${{ matrix.client.toUpperCase() }}'] }}
-          TF_VAR_hetzner_token: ${{ secrets['HCLOUD_TOKEN_${{ matrix.client.toUpperCase() }}'] }}
           TF_VAR_ssh_key_fingerprint: ${{ secrets['SSH_KEY_FINGERPRINT_${{ matrix.client.toUpperCase() }}'] }}
         run: |
           cd iac/clients/${{ matrix.client }}
@@ -70,8 +68,7 @@ jobs:
       - name: Terraform Apply
         env:
           HCLOUD_TOKEN: ${{ secrets['HCLOUD_TOKEN_${{ matrix.client.toUpperCase() }}'] }}
-          TF_VAR_hetzner_token: ${{ secrets['HCLOUD_TOKEN_${{ matrix.client.toUpperCase() }}'] }}
           TF_VAR_ssh_key_fingerprint: ${{ secrets['SSH_KEY_FINGERPRINT_${{ matrix.client.toUpperCase() }}'] }}
         run: |
-          cd iac/clients/\${{ matrix.client }}
+          cd iac/clients/${{ matrix.client }}
           terraform apply -auto-approve "tfplan"

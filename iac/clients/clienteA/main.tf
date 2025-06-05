@@ -6,9 +6,6 @@ terraform {
   }
 }
 
-provider "hcloud" {
-  token = var.hetzner_token
-}
 
 resource "hcloud_network" "clienteA_network" {
   name     = var.network_name

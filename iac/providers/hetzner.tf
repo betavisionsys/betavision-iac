@@ -8,6 +8,5 @@ terraform {
 }
 
 provider "hcloud" {
-  token = var.hetzner_token
   alias = "hetzner"
 }

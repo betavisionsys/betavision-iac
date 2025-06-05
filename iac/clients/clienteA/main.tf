@@ -1,28 +1,17 @@
-terraform {
-  required_providers {
-    hcloud = {
-      source  = "hetznercloud/hcloud"
-      version = "~> 1.40"
-    }
-  }
-  backend "local" {}
-}
-
 provider "hcloud" {}
 
-resource "hcloud_network" "clienteA_network" {
+module "network" {
+  source = "../../modules/network/hetzner"
   name     = var.network_name
-  ip_range = var.network_cidr
+  cidr     = var.network_cidr
+  location = var.location
 }
 
-resource "hcloud_server" "clienteA_server" {
-  count           = var.server_count
-  name            = "clienteA-server-${count.index}"
-  image           = var.server_image
-  server_type     = var.server_type
-  location        = var.location
-  ssh_keys        = [var.ssh_key_fingerprint]
-  network {
-    network_id = hcloud_network.clienteA_network.id
-  }
+module "compute" {
+  source = "../../modules/compute/hetzner"
+  network_id          = module.network.network_id
+  image               = var.server_image
+  server_type         = var.server_type
+  instance_count      = var.server_count
+  ssh_key_fingerprint = var.ssh_key_fingerprint
 }

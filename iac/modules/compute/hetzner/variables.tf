@@ -13,7 +13,7 @@ variable "server_type" {
   type        = string
 }
 
-variable "instance_count" {
+variable "server_count" {
   description = "Quantidade de servidores"
   type        = number
 }
